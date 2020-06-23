@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            color: #000000;
+            background: #efefef;
+            width: 100%;
+            margin: 0;
+            text-align: center;
+        }
+
+        .header {
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 5px solid #bfbfbf;
+            padding: 10px;
+            background: #ffffff;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .section-1 {
+            width: 75%;
+            display: flex;
+            text-align: center;
+            flex-wrap: wrap;
+            color: #ffffff;
+        }
+
+        .section-2 {
+            width: 25%;
+            text-align: center;
+            padding-top: 20px;
+            color: #ffffff;
+        }
+
+        button {
+            width: 70%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #efefef;
+            background: #72c3dc;
+            border: 1px solid #72c3dc;
+            box-shadow: 0 5px 2px #2b8ead;
+        }
+
+        .section-1 div {
+            width: 33.33%;
+            padding: 50px 0px;
+            font-size: 70px;
+            color: #ffffff;
+            box-sizing: border-box;
+        }
+
+        .card-1,
+        .card-8 {
+            background: #6f98a8;
+            border-left: 8px solid #6f98a8;
+        }
+
+        .card-2,
+        .card-4 {
+            background: #2b8ead;
+            border-left: 8px solid #2b8ead;
+        }
+
+        .card-3,
+        .card-5,
+        .card-9 {
+            background: #2f454e;
+            border-left: 8px solid #2f454e;
+        }
+
+        .card-6,
+        .card-7 {
+            background: #bfbfbf;
+            border-left: 8px solid #bfbfbf;
+        }
+
+        footer {
+            padding: 20px;
+        }
+
+        @media screen and (max-width: 375px) {
+            body {
+                background: #ffffff;
+            }
+
+            .header {
+                border: none;
+                background: #333333;
+                color: #efefef;
+                font-weight: 100;
+            }
+
+            .container {
+                flex-direction: column-reverse;
+            }
+
+            .section-1,
+            .section-2,
+            .section-1 div {
+                width: 100%;
+            }
+
+            button {
+                width: 25%;
+            }
+
+            .section-1 div {
+                background: #efefef;
+                padding: 10px 0;
+                margin: 3px 15px;
+                color: #333333;
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">Shuffle and Sort</div>
+    <div class="container">
+        <div class="section-1">
+            <div class="card-1">1</div>
+            <div class="card-2">2</div>
+            <div class="card-3">3</div>
+            <div class="card-4">4</div>
+            <div class="card-5">5</div>
+            <div class="card-6">6</div>
+            <div class="card-7">7</div>
+            <div class="card-8">8</div>
+            <div class="card-9">9</div>
+        </div>
+        <div class="section-2">
+            <button onclick="sortAndShuffle()">SHUFFLE</button>
+            <button onclick="sortAndShuffle(true)">SORT</button>
+        </div>
+    </div>
+
+    <footer>Shuffle and Sort by Rajesh Akula</footer>
+
+    <script type="application/javascript">
+        function sortAndShuffle(isSort) {
+            var dom = document.getElementsByClassName('section-1')[0];
+            var list = dom.children;
+            list = Array.prototype.slice.call(list, 0);
+            if (isSort) {
+                list.sort(function (a, b) {
+                    var ord1 = +a.classList.value.split('-')[1];
+                    var ord2 = +b.classList.value.split('-')[1];
+                    return (ord1 > ord2) ? 1 : -1;
+                });
+            } else {
+                list.sort(function (a, b) {
+                    return Math.random() >= 0.5 ? 1 : -1;
+                });
+            }
+            dom.innerHTML = "";
+            for (var i = 0, l = list.length; i < l; i++) {
+                dom.appendChild(list[i]);
+            }
+        }
+    </script>
+</body>
+
+</html>
